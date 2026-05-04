@@ -75,7 +75,7 @@ namespace Programmeringseksamen___Simulatorspil
                 timer1.Interval = 50;
                 button2.Enabled = false;
                 button2.Text = "Max level";
-            }
+            } 
 
             timerUpgradeCost += 100;
             UpdateUI();
