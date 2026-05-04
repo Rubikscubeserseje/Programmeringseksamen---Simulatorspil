@@ -88,7 +88,8 @@
             label2.Name = "label2";
             label2.Size = new Size(33, 25);
             label2.TabIndex = 4;
-            label2.Text = "V1";
+            label2.Text = "V2";
+            label2.Click += label2_Click;
             // 
             // Form1
             // 

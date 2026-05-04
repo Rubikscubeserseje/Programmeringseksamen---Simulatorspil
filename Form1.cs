@@ -47,9 +47,9 @@ namespace Programmeringseksamen___Simulatorspil
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            
+
             for (int j = 1; j < 100; j++)
-            speed = speed * 1.1;
+                speed = speed * 1.1;
             {
 
             }
@@ -57,37 +57,42 @@ namespace Programmeringseksamen___Simulatorspil
 
         private void button2_Click(object sender, EventArgs e)
         {
-           level++;
-            button2.Text = "Level " + level.ToString()+"100$";
+            level++;
+            button2.Text = "Level " + level.ToString() + "100$";
 
             if (timer1.Interval > 100)
-                {
-                    timer1.Interval = timer1.Interval - 10;
-                }
+            {
+                timer1.Interval = timer1.Interval - 10;
+            }
 
-                else if (timer1.Interval <= 100 && timer1.Interval > 10)
-                {
-                    timer1.Interval = timer1.Interval - 5;
-                }
+            else if (timer1.Interval <= 100 && timer1.Interval > 10)
+            {
+                timer1.Interval = timer1.Interval - 5;
+            }
 
-                else if (timer1.Interval <= 10 && timer1.Interval > 1)
-                {
-                    timer1.Interval = timer1.Interval - 1;
-                }
-                else if (timer1.Interval <= 1)
-                {
-                    button2.Text = "Max level";
-                    button2.Enabled = false;
-                }
-            
-              
+            else if (timer1.Interval <= 10 && timer1.Interval > 1)
+            {
+                timer1.Interval = timer1.Interval - 1;
+            }
+            else if (timer1.Interval <= 1)
+            {
+                button2.Text = "Max level";
+                button2.Enabled = false;
+            }
+
+
             label1.Text = timer1.Interval.ToString();
-            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
             label1.Text = timer1.Interval.ToString();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
