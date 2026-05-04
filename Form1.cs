@@ -13,6 +13,8 @@ namespace Programmeringseksamen___Simulatorspil
             label1.Text = timer1.Interval.ToString();
             button1.Hide();
 
+
+
         }
         ulong i = 0;
         int level = 0;
