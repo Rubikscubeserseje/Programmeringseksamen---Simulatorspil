@@ -39,9 +39,10 @@
             // 
             // MoneyCounter
             // 
-            MoneyCounter.Location = new Point(22, 20);
+            MoneyCounter.Location = new Point(18, 16);
+            MoneyCounter.Margin = new Padding(2, 0, 2, 0);
             MoneyCounter.Name = "MoneyCounter";
-            MoneyCounter.Size = new Size(111, 25);
+            MoneyCounter.Size = new Size(89, 20);
             MoneyCounter.TabIndex = 0;
             MoneyCounter.Text = "0";
             // 
@@ -53,19 +54,21 @@
             // 
             // button1
             // 
-            button1.Location = new Point(153, 61);
+            button1.Location = new Point(122, 49);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
-            button1.Size = new Size(143, 87);
+            button1.Size = new Size(114, 70);
             button1.TabIndex = 1;
             button1.Text = "Upgrade Multiplier";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(354, 62);
+            button2.Location = new Point(283, 50);
+            button2.Margin = new Padding(2);
             button2.Name = "button2";
-            button2.Size = new Size(141, 88);
+            button2.Size = new Size(113, 70);
             button2.TabIndex = 2;
             button2.Text = "Upgrade Speed";
             button2.UseVisualStyleBackColor = true;
@@ -74,9 +77,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(117, 189);
+            label1.Location = new Point(94, 151);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(59, 25);
+            label1.Size = new Size(50, 20);
             label1.TabIndex = 3;
             label1.Text = "label1";
             label1.Click += label1_Click;
@@ -84,25 +88,26 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(702, 210);
+            label2.Location = new Point(562, 168);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(33, 25);
+            label2.Size = new Size(26, 20);
             label2.TabIndex = 4;
-            label2.Text = "V2";
-            label2.Click += label2_Click;
+            label2.Text = "V3";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(999, 688);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(MoneyCounter);
+            Margin = new Padding(2);
             Name = "Form1";
-            Text = "Form1";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -1,98 +1,114 @@
-using Microsoft.Win32;
-using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 
 namespace Programmeringseksamen___Simulatorspil
 {
     public partial class Form1 : Form
-
     {
+        private BigInteger money = 0;
+        private ulong incomePerTick = 1;
+
+        private int speedLevel = 0;
+        private int timerLevel = 0;
+
+        private ulong speedUpgradeCost = 5;
+        private ulong timerUpgradeCost = 100;
 
         public Form1()
         {
             InitializeComponent();
-            label1.Text = timer1.Interval.ToString();
+            UpdateUI();
             button1.Hide();
-
-
-
-        }
-        ulong i = 0;
-        int level = 0;
-
-        private void MoneyCounter_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            MoneyCounter.Text = i.ToString() + "$";
-            if (i >= 1000)
+            if (ulong.MaxValue - money < incomePerTick)
             {
-                MoneyCounter.Text = (i / 1000).ToString() + "K$";
+                money = ulong.MaxValue;
+                timer1.Stop();
             }
-            i = (ulong)((i + 1) * speed);
-            if (i >= 5) button1.Show();
+            else
+            {
+                money += incomePerTick;
+            }
 
+            if (money >= 5)
+                button1.Show();
+
+            UpdateUI();
         }
 
-        private static double speed = 1;
         private void button1_Click(object sender, EventArgs e)
         {
+            if (money < speedUpgradeCost)
+                return;
 
-        }
+            money -= speedUpgradeCost;
+            speedLevel++;
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
+            if (incomePerTick <= ulong.MaxValue / 2)
+                incomePerTick *= 2;
+            else
+                incomePerTick = ulong.MaxValue;
 
-        }
+            speedUpgradeCost *= 2;
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-            for (int j = 1; j < 100; j++)
-                speed = speed * 1.1;
-            {
-
-            }
+            UpdateUI();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            level++;
-            button2.Text = "Level " + level.ToString() + "100$";
+            if (money < timerUpgradeCost)
+                return;
+
+            money -= timerUpgradeCost;
+            timerLevel++;
 
             if (timer1.Interval > 100)
+                timer1.Interval -= 10;
+            else if (timer1.Interval > 10)
+                timer1.Interval -= 5;
+            else if (timer1.Interval > 1)
+                timer1.Interval -= 1;
+            else
             {
-                timer1.Interval = timer1.Interval - 10;
-            }
-
-            else if (timer1.Interval <= 100 && timer1.Interval > 10)
-            {
-                timer1.Interval = timer1.Interval - 5;
-            }
-
-            else if (timer1.Interval <= 10 && timer1.Interval > 1)
-            {
-                timer1.Interval = timer1.Interval - 1;
-            }
-            else if (timer1.Interval <= 1)
-            {
-                button2.Text = "Max level";
+                timer1.Interval = 50;
                 button2.Enabled = false;
+                button2.Text = "Max level";
             }
 
+            timerUpgradeCost += 100;
+            UpdateUI();
+        }
 
-            label1.Text = timer1.Interval.ToString();
+        private void UpdateUI()
+        {
+            MoneyCounter.Text = FormatMoney(money);
+            label1.Text = $"Interval: {timer1.Interval} ms";
 
+            button1.Text = $"Upgrade income (Cost: {FormatMoney(speedUpgradeCost)})";
+            if (button2.Enabled)
+                button2.Text = $"Timer level {timerLevel} (Cost: {FormatMoney(timerUpgradeCost)})";
+        }
+
+        private string FormatMoney(BigInteger value)
+        {
+            if (value >= 1_000_000_000)
+                return $"{value / 1_000_000_000}B$";
+            if (value >= 1_000_000)
+                return $"{value / 1_000_000}M$";
+            if (value >= 1_000)
+                return $"{value / 1_000}K$";
+
+            return value + "$";
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            label1.Text = timer1.Interval.ToString();
+
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
