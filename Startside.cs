@@ -28,7 +28,7 @@ namespace Programmeringseksamen___Simulatorspil
             this.Hide();
             SpilSide.Show();
 
-  
+
         }
     }
 }
