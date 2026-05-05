@@ -2,8 +2,10 @@ using System.Numerics;
 
 namespace Programmeringseksamen___Simulatorspil
 {
-    public partial class Form1 : Form
+
+    public partial class SpilSide : Form
     {
+        static Startside startside = new Startside();
         private BigInteger money = 0;
         private ulong incomePerTick = 1;
 
@@ -13,9 +15,10 @@ namespace Programmeringseksamen___Simulatorspil
         private ulong speedUpgradeCost = 5;
         private ulong timerUpgradeCost = 100;
 
-        public Form1()
+        public SpilSide()
         {
             InitializeComponent();
+
             UpdateUI();
             button1.Hide();
         }
@@ -75,7 +78,7 @@ namespace Programmeringseksamen___Simulatorspil
                 timer1.Interval = 50;
                 button2.Enabled = false;
                 button2.Text = "Max level";
-            } 
+            }
 
             timerUpgradeCost += 100;
             UpdateUI();
@@ -109,6 +112,11 @@ namespace Programmeringseksamen___Simulatorspil
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

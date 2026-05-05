@@ -1,6 +1,6 @@
 ﻿namespace Programmeringseksamen___Simulatorspil
 {
-    partial class Form1
+    partial class SpilSide
     {
         /// <summary>
         ///  Required designer variable.
@@ -91,11 +91,12 @@
             label2.Location = new Point(562, 168);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(26, 20);
+            label2.Size = new Size(37, 20);
             label2.TabIndex = 4;
-            label2.Text = "V3";
+            label2.Text = "V3.5";
+            label2.Click += label2_Click;
             // 
-            // Form1
+            // SpilSide
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -106,7 +107,7 @@
             Controls.Add(button1);
             Controls.Add(MoneyCounter);
             Margin = new Padding(2);
-            Name = "Form1";
+            Name = "SpilSide";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
