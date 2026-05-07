@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,7 +21,13 @@ namespace Programmeringseksamen___Simulatorspil
 
         private void Startside_Load(object sender, EventArgs e)
         {
+            string strconn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Bruger\Downloads\Ny mappe\Database1.mdf"";Integrated Security=True";
 
+            // LocalDB requires SQLExpress:
+            // string strconn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\JTM2842\source\repos\ConsoleApp16\ConsoleApp16\App_Data\Database1.mdf';Integrated Security=True";
+
+            SqlConnection conn = new SqlConnection(strconn);
+            conn.Open();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -29,6 +36,21 @@ namespace Programmeringseksamen___Simulatorspil
             SpilSide.Show();
 
 
+        }
+
+        private void Username_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PW_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Login_Click(object sender, EventArgs e)
+        {
+            Username.Text = Program.navn;
         }
     }
 }

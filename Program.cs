@@ -5,7 +5,13 @@ namespace Programmeringseksamen___Simulatorspil
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
+        /// 
+
+        public static string navn = "nn";
         [STAThread]
+
+
+
         static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
