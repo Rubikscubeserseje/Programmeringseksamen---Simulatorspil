@@ -29,70 +29,45 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            Username = new TextBox();
-            PW = new TextBox();
-            Login = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(59, -6);
-            button1.Margin = new Padding(4, 4, 4, 4);
+            button1.Location = new Point(254, 43);
             button1.Name = "button1";
-            button1.Size = new Size(118, 36);
+            button1.Size = new Size(125, 29);
             button1.TabIndex = 0;
-            button1.Text = "continue";
+            button1.Text = "continue game";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // Username
+            // button2
             // 
-            Username.Location = new Point(116, 70);
-            Username.Name = "Username";
-            Username.Size = new Size(150, 31);
-            Username.TabIndex = 1;
-            Username.TextChanged += Username_TextChanged;
-            // 
-            // PW
-            // 
-            PW.Location = new Point(114, 122);
-            PW.Name = "PW";
-            PW.Size = new Size(150, 31);
-            PW.TabIndex = 2;
-            PW.TextChanged += PW_TextChanged;
-            // 
-            // Login
-            // 
-            Login.Location = new Point(114, 167);
-            Login.Name = "Login";
-            Login.Size = new Size(112, 34);
-            Login.TabIndex = 3;
-            Login.Text = "login";
-            Login.UseVisualStyleBackColor = true;
-            Login.Click += Login_Click;
+            button2.Location = new Point(254, 94);
+            button2.Name = "button2";
+            button2.Size = new Size(125, 29);
+            button2.TabIndex = 1;
+            button2.Text = "new game";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // Startside
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 562);
-            Controls.Add(Login);
-            Controls.Add(PW);
-            Controls.Add(Username);
+            ClientSize = new Size(800, 450);
+            Controls.Add(button2);
             Controls.Add(button1);
-            Margin = new Padding(4, 4, 4, 4);
             Name = "Startside";
             Text = "Startside";
             Load += Startside_Load;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private Button button1;
-        private TextBox Username;
-        private TextBox PW;
-        private Button Login;
+        private Button button2;
     }
 }

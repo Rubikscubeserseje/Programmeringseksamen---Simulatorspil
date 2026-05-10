@@ -1,19 +1,13 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Programmeringseksamen___Simulatorspil
 {
     public partial class Startside : Form
     {
-        static SpilSide SpilSide = new SpilSide();
+        private string SaveFilePath => Path.Combine(Application.StartupPath, "savegame.json");
+
         public Startside()
         {
             InitializeComponent();
@@ -21,21 +15,35 @@ namespace Programmeringseksamen___Simulatorspil
 
         private void Startside_Load(object sender, EventArgs e)
         {
-            string strconn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\Bruger\Downloads\Ny mappe\Database1.mdf"";Integrated Security=True";
 
-            // LocalDB requires SQLExpress:
-            // string strconn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\JTM2842\source\repos\ConsoleApp16\ConsoleApp16\App_Data\Database1.mdf';Integrated Security=True";
-
-            SqlConnection conn = new SqlConnection(strconn);
-            conn.Open();
         }
 
+        // Continue
         private void button1_Click(object sender, EventArgs e)
         {
+            SpilSide spilSide = new SpilSide();
             this.Hide();
-            SpilSide.Show();
+            spilSide.Show();
+        }
 
+        // New Game
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Er du sikker på, at du vil starte et nyt spil? Dit gamle save bliver slettet.",
+                "New Game",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
 
+            if (result != DialogResult.Yes)
+                return;
+
+            if (File.Exists(SaveFilePath))
+                File.Delete(SaveFilePath);
+
+            SpilSide spilSide = new SpilSide();
+            this.Hide();
+            spilSide.Show();
         }
 
         private void Username_TextChanged(object sender, EventArgs e)
@@ -50,7 +58,7 @@ namespace Programmeringseksamen___Simulatorspil
 
         private void Login_Click(object sender, EventArgs e)
         {
-            Username.Text = Program.navn;
+
         }
     }
 }
