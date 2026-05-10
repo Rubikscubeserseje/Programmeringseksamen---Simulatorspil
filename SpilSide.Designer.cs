@@ -67,7 +67,7 @@
             label2.Name = "label2";
             label2.Size = new Size(39, 20);
             label2.TabIndex = 2;
-            label2.Text = "v 4.0";
+            label2.Text = "v 4.5";
             label2.Click += label2_Click;
             // 
             // button1
