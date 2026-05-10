@@ -35,7 +35,9 @@
             button1 = new Button();
             button2 = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
+            BusinessImage = new PictureBox();
             Goals = new ListBox();
+            ((System.ComponentModel.ISupportInitialize)BusinessImage).BeginInit();
             SuspendLayout();
             // 
             // MoneyCounter
@@ -74,7 +76,7 @@
             button1.Name = "button1";
             button1.Size = new Size(165, 82);
             button1.TabIndex = 3;
-            button1.Text = "button1";
+            button1.Text = "multiplier";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -84,7 +86,7 @@
             button2.Name = "button2";
             button2.Size = new Size(164, 82);
             button2.TabIndex = 4;
-            button2.Text = "button2";
+            button2.Text = "Speed";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -94,14 +96,23 @@
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
             // 
+            // BusinessImage
+            // 
+            BusinessImage.Location = new Point(0, 1);
+            BusinessImage.Name = "BusinessImage";
+            BusinessImage.Size = new Size(802, 448);
+            BusinessImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            BusinessImage.TabIndex = 6;
+            BusinessImage.TabStop = false;
+            BusinessImage.Click += BusinessImage_Click;
+            // 
             // Goals
             // 
             Goals.FormattingEnabled = true;
-            Goals.Location = new Point(556, 9);
+            Goals.Location = new Point(592, 1);
             Goals.Name = "Goals";
-            Goals.Size = new Size(241, 424);
-            Goals.TabIndex = 5;
-            Goals.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            Goals.Size = new Size(210, 444);
+            Goals.TabIndex = 7;
             // 
             // SpilSide
             // 
@@ -114,9 +125,11 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(MoneyCounter);
+            Controls.Add(BusinessImage);
             Name = "SpilSide";
             Text = "SpilSide";
             Load += SpilSide_Load;
+            ((System.ComponentModel.ISupportInitialize)BusinessImage).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -129,6 +142,7 @@
         private Button button1;
         private Button button2;
         private System.Windows.Forms.Timer timer1;
+        private PictureBox BusinessImage;
         private ListBox Goals;
     }
 }

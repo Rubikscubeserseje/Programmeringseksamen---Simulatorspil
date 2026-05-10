@@ -3,6 +3,7 @@ using System.IO;
 using System.Numerics;
 using System.Text.Json;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace Programmeringseksamen___Simulatorspil
 {
@@ -175,9 +176,10 @@ namespace Programmeringseksamen___Simulatorspil
 
         private void UpdateUI()
         {
+
             BigInteger speedUpgradeCost = GetSpeedUpgradeCost();
             BigInteger timerUpgradeCost = GetTimerUpgradeCost();
-
+            UpdateBusinessImage();
             MoneyCounter.Text = FormatMoney(money);
             label1.Text = $"Interval: {timer1.Interval} ms | Income: {FormatMoney(incomePerTick)}";
 
@@ -188,6 +190,7 @@ namespace Programmeringseksamen___Simulatorspil
             else
                 button2.Text = "Max level";
             UpdateGoals();
+
         }
 
         private string FormatMoney(BigInteger value)
@@ -246,7 +249,24 @@ namespace Programmeringseksamen___Simulatorspil
             Goals.Items.Add(incomePerTick >= 1000 ? "✅ Nå 1K$ per tick" : "❌ Nå 1K$ per tick");
         }
 
-       
+        private void UpdateBusinessImage()
+        {
+            int totalLevel = speedLevel + timerLevel;
+            string imagePath;
+
+            if (totalLevel >= 18)
+                imagePath = @"C:\Users\coolh\source\repos\kjhl\Images\MaxLevel.png";
+            else if (totalLevel >= 10)
+                imagePath = @"C:\Users\coolh\source\repos\kjhl\Images\MediumLevel.png";
+            else
+                imagePath = @"C:\Users\coolh\source\repos\kjhl\Images\LowLevel.png";
+
+            if (File.Exists(imagePath))
+            {
+                BusinessImage.Image?.Dispose();
+                BusinessImage.Image = Image.FromFile(imagePath);
+            }
+        }
         private void MoneyCounter_Click(object sender, EventArgs e)
         {
 
@@ -274,6 +294,11 @@ namespace Programmeringseksamen___Simulatorspil
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BusinessImage_Click(object sender, EventArgs e)
         {
 
         }
