@@ -246,7 +246,7 @@ namespace Programmeringseksamen___Simulatorspil
             Goals.Items.Add(incomePerTick >= 1000 ? "✅ Nå 1K$ per tick" : "❌ Nå 1K$ per tick");
         }
 
-      
+       
         private void MoneyCounter_Click(object sender, EventArgs e)
         {
 
