@@ -56,11 +56,16 @@ namespace Programmeringseksamen___Simulatorspil
         {
             SaveData data = new SaveData
             {
+
+
+
                 Money = money.ToString(),
                 IncomePerTick = incomePerTick.ToString(),
                 SpeedLevel = speedLevel,
                 TimerLevel = timerLevel,
+                GoalCompleted = goalCompleted,
                 TimerInterval = timer1.Interval
+
             };
 
             string json = JsonSerializer.Serialize(data, new JsonSerializerOptions
@@ -92,13 +97,22 @@ namespace Programmeringseksamen___Simulatorspil
 
                 speedLevel = data.SpeedLevel;
                 timerLevel = data.TimerLevel;
-                timer1.Interval = data.TimerInterval;
+
+                if (data.TimerInterval < 1)
+                    timer1.Interval = 1;
+                else
+                    timer1.Interval = data.TimerInterval;
+
+                if (data.GoalCompleted != null && data.GoalCompleted.Length == 25)
+                    goalCompleted = data.GoalCompleted;
+                else
+                    goalCompleted = new bool[25];
 
                 if (timer1.Interval <= 1)
                 {
                     timer1.Interval = 1;
                     button2.Enabled = false;
-                    button2.Text = "Max level";
+                    button2.Text = "Computer Max";
                 }
                 else
                 {
@@ -112,9 +126,9 @@ namespace Programmeringseksamen___Simulatorspil
                 speedLevel = 0;
                 timerLevel = 0;
                 timer1.Interval = 1000;
+                goalCompleted = new bool[25];
             }
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             money += incomePerTick;
