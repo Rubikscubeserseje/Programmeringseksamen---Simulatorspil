@@ -44,6 +44,7 @@
             // MoneyCounter
             // 
             MoneyCounter.AutoSize = true;
+            MoneyCounter.BackColor = SystemColors.Control;
             MoneyCounter.Location = new Point(12, 9);
             MoneyCounter.Name = "MoneyCounter";
             MoneyCounter.Size = new Size(50, 20);
@@ -66,9 +67,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(354, 220);
             label2.Name = "label2";
-            label2.Size = new Size(39, 20);
+            label2.Size = new Size(47, 20);
             label2.TabIndex = 2;
-            label2.Text = "v 4.7";
+            label2.Text = "v 4.75";
             label2.Click += label2_Click;
             // 
             // button1

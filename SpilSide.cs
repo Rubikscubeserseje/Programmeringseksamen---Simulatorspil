@@ -13,6 +13,7 @@ namespace Programmeringseksamen___Simulatorspil
     {
         private BigInteger money = 0;
         private BigInteger incomePerTick = 1;
+        private bool[] goalCompleted = new bool[21];
 
         private int speedLevel = 0;
         private int timerLevel = 0;
@@ -27,6 +28,7 @@ namespace Programmeringseksamen___Simulatorspil
             public int SpeedLevel { get; set; } = 0;
             public int TimerLevel { get; set; } = 0;
             public int TimerInterval { get; set; } = 1000;
+            public bool[] GoalCompleted { get; set; } = new bool[21];
         }
         public SpilSide()
         {
@@ -222,42 +224,80 @@ namespace Programmeringseksamen___Simulatorspil
 
         private void UpdateGoals()
         {
+            int i = 0;
+
+            goalCompleted[i] |= money >= 10;
+            i++;
+            goalCompleted[i] |= money >= 50;
+            i++;
+            goalCompleted[i] |= money >= 100;
+            i++;
+            goalCompleted[i] |= money >= 500;
+            i++;
+            goalCompleted[i] |= money >= 1000;
+            i++;
+            goalCompleted[i] |= money >= 5000;
+            i++;
+            goalCompleted[i] |= money >= 10000;
+            i++;
+            goalCompleted[i] |= money >= 100000;
+            i++;
+            goalCompleted[i] |= money >= 1000000;
+            i++;
+            goalCompleted[i] |= money >= 1000000000;
+            i++;
+
+            goalCompleted[i] |= speedLevel >= 1;
+            i++;
+            goalCompleted[i] |= speedLevel >= 3;
+            i++;
+            goalCompleted[i] |= speedLevel >= 5;
+            i++;
+            goalCompleted[i] |= speedLevel >= 10;
+            i++;
+            goalCompleted[i] |= speedLevel >= 25;
+            i++;
+
+            goalCompleted[i] |= timerLevel >= 1;
+            i++;
+            goalCompleted[i] |= timerLevel >= 3;
+            i++;
+            goalCompleted[i] |= timerLevel >= 5;
+            i++;
+            goalCompleted[i] |= timerLevel >= 10;
+            i++;
+            goalCompleted[i] |= timerLevel >= 25;
+            i++;
+
+            goalCompleted[i] |= incomePerTick >= 5;
+
             Goals.Items.Clear();
 
-            // Money goals
-            Goals.Items.Add(money >= 10 ? "✅ Tjen 10$" : "❌ Tjen 10$");
-            Goals.Items.Add(money >= 50 ? "✅ Tjen 50$" : "❌ Tjen 50$");
-            Goals.Items.Add(money >= 100 ? "✅ Tjen 100$" : "❌ Tjen 100$");
-            Goals.Items.Add(money >= 500 ? "✅ Tjen 500$" : "❌ Tjen 500$");
-            Goals.Items.Add(money >= 1000 ? "✅ Tjen 1K$" : "❌ Tjen 1K$");
-            Goals.Items.Add(money >= 5000 ? "✅ Tjen 5K$" : "❌ Tjen 5K$");
-            Goals.Items.Add(money >= 10000 ? "✅ Tjen 10K$" : "❌ Tjen 10K$");
-            Goals.Items.Add(money >= 100000 ? "✅ Tjen 100K$" : "❌ Tjen 100K$");
-            Goals.Items.Add(money >= 1000000 ? "✅ Tjen 1M$" : "❌ Tjen 1M$");
-            Goals.Items.Add(money >= 1000000000 ? "✅ Tjen 1B$" : "❌ Tjen 1B$");
+            Goals.Items.Add(goalCompleted[0] ? "✅ Tjen 10$" : "❌ Tjen 10$");
+            Goals.Items.Add(goalCompleted[1] ? "✅ Tjen 50$" : "❌ Tjen 50$");
+            Goals.Items.Add(goalCompleted[2] ? "✅ Tjen 100$" : "❌ Tjen 100$");
+            Goals.Items.Add(goalCompleted[3] ? "✅ Tjen 500$" : "❌ Tjen 500$");
+            Goals.Items.Add(goalCompleted[4] ? "✅ Tjen 1K$" : "❌ Tjen 1K$");
+            Goals.Items.Add(goalCompleted[5] ? "✅ Tjen 5K$" : "❌ Tjen 5K$");
+            Goals.Items.Add(goalCompleted[6] ? "✅ Tjen 10K$" : "❌ Tjen 10K$");
+            Goals.Items.Add(goalCompleted[7] ? "✅ Tjen 100K$" : "❌ Tjen 100K$");
+            Goals.Items.Add(goalCompleted[8] ? "✅ Tjen 1M$" : "❌ Tjen 1M$");
+            Goals.Items.Add(goalCompleted[9] ? "✅ Tjen 1B$" : "❌ Tjen 1B$");
 
-            // Income upgrade goals
-            Goals.Items.Add(speedLevel >= 1 ? "✅ Køb 1 income upgrade" : "❌ Køb 1 income upgrade");
-            Goals.Items.Add(speedLevel >= 3 ? "✅ Nå income level 3" : "❌ Nå income level 3");
-            Goals.Items.Add(speedLevel >= 5 ? "✅ Nå income level 5" : "❌ Nå income level 5");
-            Goals.Items.Add(speedLevel >= 10 ? "✅ Nå income level 10" : "❌ Nå income level 10");
-            Goals.Items.Add(speedLevel >= 25 ? "✅ Nå income level 25" : "❌ Nå income level 25");
+            Goals.Items.Add(goalCompleted[10] ? "✅ Køb 1 employee" : "❌ Køb 1 employee");
+            Goals.Items.Add(goalCompleted[11] ? "✅ Nå employee level 3" : "❌ Nå employee level 3");
+            Goals.Items.Add(goalCompleted[12] ? "✅ Nå employee level 5" : "❌ Nå employee level 5");
+            Goals.Items.Add(goalCompleted[13] ? "✅ Nå employee level 10" : "❌ Nå employee level 10");
+            Goals.Items.Add(goalCompleted[14] ? "✅ Nå employee level 25" : "❌ Nå employee level 25");
 
-            // Speed upgrade goals
-            Goals.Items.Add(timerLevel >= 1 ? "✅ Køb 1 speed upgrade" : "❌ Køb 1 speed upgrade");
-            Goals.Items.Add(timerLevel >= 3 ? "✅ Nå speed level 3" : "❌ Nå speed level 3");
-            Goals.Items.Add(timerLevel >= 5 ? "✅ Nå speed level 5" : "❌ Nå speed level 5");
-            Goals.Items.Add(timerLevel >= 10 ? "✅ Nå speed level 10" : "❌ Nå speed level 10");
-            Goals.Items.Add(timerLevel >= 25 ? "✅ Nå speed level 25" : "❌ Nå speed level 25");
+            Goals.Items.Add(goalCompleted[15] ? "✅ Køb 1 computer" : "❌ Køb 1 computer");
+            Goals.Items.Add(goalCompleted[16] ? "✅ Nå computer level 3" : "❌ Nå computer level 3");
+            Goals.Items.Add(goalCompleted[17] ? "✅ Nå computer level 5" : "❌ Nå computer level 5");
+            Goals.Items.Add(goalCompleted[18] ? "✅ Nå computer level 10" : "❌ Nå computer level 10");
+            Goals.Items.Add(goalCompleted[19] ? "✅ Nå computer level 25" : "❌ Nå computer level 25");
 
-            // Income per tick goals
-            Goals.Items.Add(incomePerTick >= 5 ? "✅ Nå 5$ per tick" : "❌ Nå 5$ per tick");
-            Goals.Items.Add(incomePerTick >= 10 ? "✅ Nå 10$ per tick" : "❌ Nå 10$ per tick");
-            Goals.Items.Add(incomePerTick >= 50 ? "✅ Nå 50$ per tick" : "❌ Nå 50$ per tick");
-            Goals.Items.Add(incomePerTick >= 100 ? "✅ Nå 100$ per tick" : "❌ Nå 100$ per tick");
-            Goals.Items.Add(incomePerTick >= 1000 ? "✅ Nå 1K$ per tick" : "❌ Nå 1K$ per tick");
+            Goals.Items.Add(goalCompleted[20] ? "✅ Nå 5$ per tick" : "❌ Nå 5$ per tick");
         }
-
         private void UpdateBusinessImage()
         {
             int totalLevel = speedLevel + timerLevel;
