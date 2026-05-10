@@ -37,10 +37,7 @@ namespace Programmeringseksamen___Simulatorspil
         {
             LoadGame();
             UpdateUI();
-            button1.Hide();
 
-            if (money >= GetSpeedUpgradeCost())
-                button1.Show();
         }
 
         private BigInteger GetSpeedUpgradeCost()
@@ -120,8 +117,7 @@ namespace Programmeringseksamen___Simulatorspil
         {
             money += incomePerTick;
 
-            if (money >= GetSpeedUpgradeCost())
-                button1.Show();
+           
 
             UpdateUI();
             SaveGame();
@@ -176,21 +172,34 @@ namespace Programmeringseksamen___Simulatorspil
 
         private void UpdateUI()
         {
-
             BigInteger speedUpgradeCost = GetSpeedUpgradeCost();
             BigInteger timerUpgradeCost = GetTimerUpgradeCost();
+
+            bool canBuyEmployees = money >= speedUpgradeCost;
+            bool canBuyComputer = money >= timerUpgradeCost;
+
             UpdateBusinessImage();
             MoneyCounter.Text = FormatMoney(money);
-            label1.Text = $"Interval: {timer1.Interval} ms | Income: {FormatMoney(incomePerTick)}";
+            label1.Text = $"Computer speed: {timer1.Interval} ms | Employees income: {FormatMoney(incomePerTick)}";
 
-            button1.Text = $"Upgrade income Lv.{speedLevel} (Cost: {FormatMoney(speedUpgradeCost)})";
+            button1.Text = $"Employees Lv.{speedLevel} (Cost: {FormatMoney(speedUpgradeCost)})";
+            button1.BackColor = canBuyEmployees ? Color.Green : Color.Red;
+            button1.ForeColor = Color.White;
 
             if (button2.Enabled)
-                button2.Text = $"Timer level {timerLevel} (Cost: {FormatMoney(timerUpgradeCost)})";
+            {
+                button2.Text = $"Computer Lv.{timerLevel} (Cost: {FormatMoney(timerUpgradeCost)})";
+                button2.BackColor = canBuyComputer ? Color.Green : Color.Red;
+                button2.ForeColor = Color.White;
+            }
             else
-                button2.Text = "Max level";
-            UpdateGoals();
+            {
+                button2.Text = "Computer Max";
+                button2.BackColor = Color.Gray;
+                button2.ForeColor = Color.White;
+            }
 
+            UpdateGoals();
         }
 
         private string FormatMoney(BigInteger value)
@@ -255,11 +264,11 @@ namespace Programmeringseksamen___Simulatorspil
             string imagePath;
 
             if (totalLevel >= 18)
-                imagePath = @"C:\Users\coolh\source\repos\kjhl\Images\MaxLevel.png";
+                imagePath = Path.Combine(Application.StartupPath, "Images", "MaxLevel.png");
             else if (totalLevel >= 10)
-                imagePath = @"C:\Users\coolh\source\repos\kjhl\Images\MediumLevel.png";
+                imagePath = Path.Combine(Application.StartupPath, "Images", "MediumLevel.png");
             else
-                imagePath = @"C:\Users\coolh\source\repos\kjhl\Images\LowLevel.png";
+                imagePath = Path.Combine(Application.StartupPath, "Images", "LowLevel.png");
 
             if (File.Exists(imagePath))
             {

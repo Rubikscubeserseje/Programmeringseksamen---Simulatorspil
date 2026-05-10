@@ -37,6 +37,7 @@
             timer1 = new System.Windows.Forms.Timer(components);
             BusinessImage = new PictureBox();
             Goals = new ListBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)BusinessImage).BeginInit();
             SuspendLayout();
             // 
@@ -67,7 +68,7 @@
             label2.Name = "label2";
             label2.Size = new Size(39, 20);
             label2.TabIndex = 2;
-            label2.Text = "v 4.5";
+            label2.Text = "v 4.7";
             label2.Click += label2_Click;
             // 
             // button1
@@ -109,16 +110,26 @@
             // Goals
             // 
             Goals.FormattingEnabled = true;
-            Goals.Location = new Point(592, 1);
+            Goals.Location = new Point(592, 34);
             Goals.Name = "Goals";
-            Goals.Size = new Size(210, 444);
+            Goals.Size = new Size(210, 404);
             Goals.TabIndex = 7;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(676, 9);
+            label3.Name = "label3";
+            label3.Size = new Size(46, 20);
+            label3.TabIndex = 8;
+            label3.Text = "Goals";
             // 
             // SpilSide
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label3);
             Controls.Add(Goals);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -144,5 +155,6 @@
         private System.Windows.Forms.Timer timer1;
         private PictureBox BusinessImage;
         private ListBox Goals;
+        private Label label3;
     }
 }
